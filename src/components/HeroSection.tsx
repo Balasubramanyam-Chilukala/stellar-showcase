@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import profilePhoto from '@/assets/profile-photo.jpg';
 
 const HeroSection = () => {
   const nameLetters = "Balasubramanyam".split('');
@@ -36,11 +37,30 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
+          {/* Profile Photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.8, type: 'spring', stiffness: 100 }}
+            className="mb-8 flex justify-center"
+          >
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-primary rounded-full blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse-glow" />
+              <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-background ring-2 ring-primary/50">
+                <img
+                  src={profilePhoto}
+                  alt="Balasubramanyam Chilukala"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+            </div>
+          </motion.div>
+
           {/* Greeting */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
             className="text-muted-foreground text-lg mb-4"
           >
             Hello, I'm

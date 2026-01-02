@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Resume', href: '/resume/Balasubramanyam.pdf', external: true },
+  { name: 'Resume', href: 'https://drive.google.com/file/d/1Ga2GPeWu03PxZUVElgdYJuGV2i5BUZMk/view?usp=sharing', external: true },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
