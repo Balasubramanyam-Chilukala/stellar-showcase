@@ -1,0 +1,146 @@
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { ExternalLink, Github, Zap, Globe, Brain } from 'lucide-react';
+
+const projects = [
+  {
+    title: 'VoiceBridge',
+    subtitle: 'Real-Time Meeting Translator',
+    description: 'Built a 4-thread async pipeline for bidirectional translation with 3-6 second latency, supporting 13+ languages including Indian regional languages.',
+    tech: ['Python', 'Google STT', 'WebSockets', 'PyAudio'],
+    icon: Zap,
+    highlights: ['4-thread async pipeline', 'Echo prevention system', 'Auto-reconnection handling'],
+    github: '#',
+  },
+  {
+    title: 'Pocket Planner',
+    subtitle: 'Financial Tracking Platform',
+    description: 'Scalable backend with Node.js serving 100+ users, featuring expense tracking, subscription management, and an AI-powered FinBot handling 1000+ queries monthly.',
+    tech: ['Node.js', 'Express.js', 'PostgreSQL', 'Gemini AI'],
+    icon: Globe,
+    highlights: ['500+ expense logs managed', 'AI chatbot integration', 'Financial goal management'],
+    github: '#',
+  },
+  {
+    title: 'Skill Craft',
+    subtitle: 'Resume Analysis Platform',
+    description: 'AI-driven resume analysis platform providing resume scores and personalized course recommendations from 50,000+ courses to improve career readiness.',
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Gemini AI'],
+    icon: Brain,
+    highlights: ['AI-powered analysis', '50K+ course database', 'Personalized recommendations'],
+    github: '#',
+    live: '#',
+  },
+];
+
+const ProjectsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="projects" className="py-24" ref={ref}>
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.2 }}
+            className="text-primary text-sm font-medium tracking-wider uppercase"
+          >
+            Projects
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3 }}
+            className="text-4xl md:text-5xl font-display font-bold mt-3 text-gradient"
+          >
+            What I've Built
+          </motion.h2>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 + index * 0.15 }}
+              className="group glass rounded-xl p-6 hover:shadow-hover transition-all duration-300 flex flex-col"
+            >
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <project.icon className="text-primary" size={24} />
+              </div>
+
+              {/* Title & Subtitle */}
+              <h3 className="text-xl font-display font-semibold text-foreground mb-1">
+                {project.title}
+              </h3>
+              <p className="text-primary text-sm font-medium mb-3">{project.subtitle}</p>
+
+              {/* Description */}
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-grow">
+                {project.description}
+              </p>
+
+              {/* Highlights */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.highlights.map((highlight) => (
+                  <span
+                    key={highlight}
+                    className="text-xs px-2 py-1 bg-secondary rounded-full text-muted-foreground"
+                  >
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-xs px-2 py-1 border border-border rounded-full text-foreground"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Links */}
+              <div className="flex gap-4 pt-4 border-t border-border">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 text-sm"
+                  >
+                    <Github size={16} />
+                    Code
+                  </a>
+                )}
+                {project.live && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 text-sm"
+                  >
+                    <ExternalLink size={16} />
+                    Live
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
